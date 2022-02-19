@@ -6,9 +6,6 @@
 #include <unistd.h>
 #include <math.h>
 
-/* this data is shared by the thread(s) */
-int threads;
-unsigned long iterations;
 void * runner(void * param); /* the thread */
 
 typedef struct NewtonianThread {
@@ -31,8 +28,8 @@ int main(int argc, char * argv[]) {
     }
 
     // Init Variable from args
-    iterations = atol(argv[1]);
-    threads = atol(argv[2]);
+    int iterations = atol(argv[1]);
+    int threads = atol(argv[2]);
     int iterations_per_thread = ceil(((double)iterations)/((double)threads));
 
     NewtonianThread newtonian_threads[threads];
